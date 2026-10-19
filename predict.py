@@ -59,9 +59,6 @@ def check(orders: pd.DataFrame) -> pd.DataFrame:
             raise BadOrders(
                 f"В поле {column} отрицательные минуты у заказа {orders['order_id'][negative].iloc[0]}"
             )
-    unknown = ~orders["current_status"].isin(STATUSES)
-    if unknown.any():
-        raise BadOrders(f"Неизвестный статус: {orders['current_status'][unknown].iloc[0]}")
     return orders
 
 
